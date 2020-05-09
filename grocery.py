@@ -5,7 +5,7 @@ class Product():
         self.prdname=prdname
         self.unit=unit
 
-
+#message only
 
     def updatecost(self,cost):
         self.cost=cost
