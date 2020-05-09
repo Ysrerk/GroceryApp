@@ -1,3 +1,5 @@
+
+
 sepettutar=0
 
 class Product():
@@ -6,18 +8,16 @@ class Product():
         self.prdname=prdname
         self.unit=unit
 
-#message only
-
     def updatecost(self,cost):
         self.cost=cost
     def productdisplay(self):
         print("urunun adi:{} \n urunun Birimi :{}\n urunun fiyati:{}".format(self.prdname,self.unit,self.cost))
-    def urunekle(self):
+    def addproduct(self):
         stock[self.prdname]=self.cost
-    def sepeteekle(self,miktar):
+    def addbasket(self,miktar):
         self.miktar=miktar
         sepet[self.prdname]=self.miktar
-    def sepethesapla(self,miktar):
+    def calculatebasket(self,miktar):
         self.miktar=miktar
         product=self.prdname
         sepettutar=float(stock[product])*int(self.miktar)
@@ -25,76 +25,67 @@ class Product():
         return sepettutar
 
 
-
 stock = {}
 sepet={}
 basketamount=[]
 
-
-
-
-
 soup=Product("soup","tin")
 soup.updatecost(10)
-soup.productdisplay()
-soup.urunekle()
-print(stock)
+soup.addproduct()
+#print(stock)
 bread=Product("bread","loaf")
 bread.updatecost(20)
-bread.urunekle()
-print(stock)
+bread.addproduct()
+#print(stock)
 #####
 milk=Product("milk","bottle")
 milk.updatecost(30)
-milk.urunekle()
+milk.addproduct()
 #######
 apples=Product("apples","single")
 apples.updatecost(40)
-apples.urunekle()
-print(stock)
+apples.addproduct()
+#print(stock)
 # x="bread"
 # print(stock[x]*3)
 
 # for key,value in stock.items():
 #     print(key,":",value)
 
-###
-#
+
 while True:
 
-    urun=input("Lutfen almak istediginiz urunu yaziniz")
-    miktar=int(input("Almak istedoiginiz urunun miktarini yaziniz"))
+    urun=input("Please write  below which product do you want  buy:\n")
+    miktar=int(input("Please write below how many do you want this item \n"))
     if urun==bread.prdname:
-        bread.sepeteekle(miktar)
-        bread.sepethesapla(miktar)
+        bread.addbasket(miktar)
+        bread.calculatebasket(miktar)
 
     elif urun==milk.prdname:
-        milk.sepeteekle(miktar)
-        milk.sepethesapla(miktar)
+        milk.addbasket(miktar)
+        milk.calculatebasket(miktar)
     elif urun==soup.prdname:
-        soup.sepeteekle(miktar)
-        soup.sepethesapla(miktar)
+        soup.addbasket(miktar)
+        soup.calculatebasket(miktar)
 
     elif urun==apples.prdname:
-        apples.sepeteekle(miktar)
-        apples.sepethesapla(miktar)
+        apples.addbasket(miktar)
+        apples.calculatebasket(miktar)
 
 
-    print("sepete yeni urun eklemek istiyormusunuz Evet ise E ye basin Hayir Ise H ye Basin ")
+    print("Do you want add new product in the basket?\nif your answer is yes please write 'E' your answer is no please write 'H' ")
     print("Items in the your basket ",sepet)
-    secim=input("seciminizi giriniz")
+    secim=input("Please wriye your prefer")
     if secim==("h"or "H"):
-        print("Items in the your basket ", sepet)
-        print("Total Amount ",sum(basketamount))
+
+        print("#####################################")
+        print("Items in the your basket :", sepet)
+        print("#####################################")
+        print("Total Amount: ",sum(basketamount))
         break
 
 
-# t=list((m,x,a,y)for (m,x)  in sepet.items() for (a,y)in stock.items())
-# print(t)
-# sepett=0
-# for key,value in sepet.items():
-#     if key==stock.keys():
-#         sepett+=(value*stock[key][value])
+
 
 
 
