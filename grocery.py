@@ -4,6 +4,7 @@ sepettutar=0
 sayac=0
 
 class Product():
+
     #stock = {"soup": 0.65, "bread": 0.8, "milk": 1.3, "apples": 0.10}
     def __init__(self,prdname,unit):
         self.prdname=prdname
@@ -32,11 +33,15 @@ class Product():
             breadindex=(basketamount.index(sepettutar))#yeni
             breadindexl.append(breadindex)
             return sepettutar, breadindexl[0]
+        elif product=="apples":
+            appleindex=(basketamount.index(sepettutar))#yeni
+            appleindexl.append(appleindex)
+            return sepettutar, appleindexl[0]
         else:
             breadindex=""
-            return sepettutar, breadindex
-
-
+            appleindex = ""
+            return sepettutar, breadindex,appleindex
+print("Our  product list :\n*milk\n*bread\n*soup\n*apples \nOnly these products in our stock  please select from them. ")
 stock = {}
 sepet={}
 basketamount=[]
@@ -44,22 +49,23 @@ temp2=[]#yeni
 temp3=[]#yeni
 tempsoup=[]#yeni
 breadindexl=[]#yeni
+appleindexl=[]#yeni2
 
 soup=Product("soup","tin")
-soup.updatecost(10)
+soup.updatecost(0.65)
 soup.addproduct()
 #print(stock)
 bread=Product("bread","loaf")
-bread.updatecost(20)
+bread.updatecost(0.8)
 bread.addproduct()
 #print(stock)
 #####
 milk=Product("milk","bottle")
-milk.updatecost(30)
+milk.updatecost(1.3)
 milk.addproduct()
 #######
 apples=Product("apples","single")
-apples.updatecost(40)
+apples.updatecost(0.10)
 apples.addproduct()
 
 
@@ -110,9 +116,11 @@ while True:
                     tempsoup.append(i[1])#yeni
                     if sum(tempsoup)>=2:#yeni
                         if "bread" in sepet.keys():#yeni
-                            basketamount[breadindexl[0]] = basketamount[breadindexl[0]] / 2#yeni
-
-
+                            basketamount[breadindexl[0]] = basketamount[breadindexl[0]]-bread.cost/2#yeni
+        #yeni2
+        if "apples" in sepet.keys():  # yeni2
+            basketamount[appleindexl[0]] = basketamount[appleindexl[0]] *(0.90)  # yeni2
+        #yeni2
         print("#####################################")
         print("Items in the your basket :", sepet)
         print("#####################################")
